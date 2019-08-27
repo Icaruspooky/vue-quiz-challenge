@@ -28,7 +28,7 @@ export default {
   props: {
     question: String,
     options: Array,
-    score: Boolean,
+    scored: Boolean,
     disabled: Boolean
   },
   data() {
@@ -39,6 +39,7 @@ export default {
     getCorrectAnswer(option) {
       if (option.correct) {
         option.success = true;
+        this.$emit("scored");
       } else {
         for (let i = 0; i < this.options.length; i++) {
           if (this.options[i].correct) {
@@ -48,6 +49,7 @@ export default {
         option.danger = true;
       }
       this.$emit("disable");
+      this.$emit("answer");
     }
   }
 };

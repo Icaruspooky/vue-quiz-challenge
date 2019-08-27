@@ -4,38 +4,36 @@
       <Question
         v-for="(question, index) in questions"
         :key="index"
-        @score="question.score = 1"
+        @answer="answer()"
+        @scored="question.scored = true"
         @disable="question.disabled = true"
         :disabled="question.disabled"
         :question="question.question"
         :options="question.options"
       ></Question>
     </div>
-    <div></div>
+    <div>
+      <Result :total="total"></Result>
+    </div>
   </div>
 </template>
 
 <script>
 import Question from "@/components/Question.vue";
+import Result from "@/components/Result.vue";
 
 export default {
   name: "app",
-  components: { Question },
-
-  computed: {
-    score: function() {
-      let score = 0;
-      for (let question in this.questions) {
-        if (question.score) {
-          score++;
-        }
-      }
-      return score;
-    }
+  props: {
+    answered: Boolean,
+    finished: Boolean
   },
+
+  components: { Question, Result },
 
   data() {
     return {
+      total: this.questions.length,
       questions: [
         {
           disabled: false,
@@ -91,7 +89,7 @@ export default {
             },
             {
               text: "Para roubar suas riquezas.",
-              correct: true,
+              correct: false,
               danger: false,
               success: false
             }
@@ -131,6 +129,17 @@ export default {
     };
   },
 
-  methods: {}
+  methods: {
+    answer() {
+      console.log("Respondido");
+      this.answered++;
+      if (this.answered == this.questions.length) {
+        this.finish();
+      }
+    },
+    finish() {
+      this.finished = true;
+    }
+  }
 };
 </script>
