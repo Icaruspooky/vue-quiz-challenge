@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div class="container" :data-resposta="correta">
-      <div data-test="pergunta" class="title">{{ question }}</div>
-      <ul>
-        <li v-for="(option, index) in options" :key="index">
+    <div class="container">
+      <div class="title">{{ question }}</div>
+      <ul
+        data-test="pergunta"
+        :data-resposta="correta"
+      >
+        <li
+          v-for="(option, index) in options"
+          :key="index"
+        >
           <button
             data-test="opcao"
             :disabled="disabled"

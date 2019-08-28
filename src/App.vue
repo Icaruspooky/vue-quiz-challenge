@@ -1,5 +1,8 @@
 <template>
-  <Index @reRender="forceReRender" :key="indexKey" />
+  <Index
+    @reRender="forceReRender"
+    :key="indexKey"
+  />
 </template>
 
 <script>

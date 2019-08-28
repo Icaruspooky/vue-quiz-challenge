@@ -45,7 +45,6 @@ export default {
       finished: false,
       questions: [
         {
-          correta: "",
           disabled: false,
           question: "Qual o objetivo de Tanjirou?",
           options: [
@@ -76,7 +75,6 @@ export default {
           ]
         },
         {
-          correta: "",
           disabled: false,
           question: "Por que Thorfinn quer matar Askeladd?",
           options: [
@@ -107,7 +105,6 @@ export default {
           ]
         },
         {
-          correta: "",
           disabled: false,
           question: "Qual o maior inimigo de Guts?",
           options: [
