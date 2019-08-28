@@ -4,8 +4,8 @@
       <Question
         v-for="(question, index) in questions"
         :key="index"
-        @answer="answer()"
-        @scored="question.scored = true"
+        @answerRight="answerRight()"
+        @answerWrong="answerWrong()"
         @disable="question.disabled = true"
         :disabled="question.disabled"
         :question="question.question"
@@ -13,7 +13,12 @@
       ></Question>
     </div>
     <div>
-      <Result :total="total"></Result>
+      <Result
+        :answered="answered"
+        :score="score"
+        :finished="finished"
+        @reload="reload()"
+      ></Result>
     </div>
   </div>
 </template>
@@ -24,16 +29,19 @@ import Result from "@/components/Result.vue";
 
 export default {
   name: "app",
-  props: {
-    answered: Boolean,
-    finished: Boolean
-  },
-
   components: { Question, Result },
+
+  computed: {
+    total() {
+      return this.questions.length;
+    }
+  },
 
   data() {
     return {
-      total: this.questions.length,
+      score: 0,
+      answered: 0,
+      finished: false,
       questions: [
         {
           disabled: false,
@@ -130,15 +138,25 @@ export default {
   },
 
   methods: {
-    answer() {
-      console.log("Respondido");
+    answerRight() {
       this.answered++;
-      if (this.answered == this.questions.length) {
+      this.score++;
+      if (this.answered == this.total) {
+        this.finish();
+      }
+    },
+    answerWrong() {
+      this.answered++;
+      if (this.answered == this.total) {
         this.finish();
       }
     },
     finish() {
       this.finished = true;
+    },
+    reload() {
+      console.log("reload");
+      this.$emit("reRender");
     }
   }
 };

@@ -39,7 +39,7 @@ export default {
     getCorrectAnswer(option) {
       if (option.correct) {
         option.success = true;
-        this.$emit("scored");
+        this.$emit("answerRight");
       } else {
         for (let i = 0; i < this.options.length; i++) {
           if (this.options[i].correct) {
@@ -47,9 +47,9 @@ export default {
           }
         }
         option.danger = true;
+        this.$emit("answerWrong");
       }
       this.$emit("disable");
-      this.$emit("answer");
     }
   }
 };
