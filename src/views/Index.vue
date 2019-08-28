@@ -4,12 +4,13 @@
       <Question
         v-for="(question, index) in questions"
         :key="index"
-        @answerRight="answerRight()"
-        @answerWrong="answerWrong()"
+        @answerRight="answerRight(), (question.correta = 'correta')"
+        @answerWrong="answerWrong(), (question.correta = 'errada')"
         @disable="question.disabled = true"
         :disabled="question.disabled"
         :question="question.question"
         :options="question.options"
+        :correta="question.correta"
       ></Question>
     </div>
     <div>
@@ -44,6 +45,7 @@ export default {
       finished: false,
       questions: [
         {
+          correta: "",
           disabled: false,
           question: "Qual o objetivo de Tanjirou?",
           options: [
@@ -74,6 +76,7 @@ export default {
           ]
         },
         {
+          correta: "",
           disabled: false,
           question: "Por que Thorfinn quer matar Askeladd?",
           options: [
@@ -104,6 +107,7 @@ export default {
           ]
         },
         {
+          correta: "",
           disabled: false,
           question: "Qual o maior inimigo de Guts?",
           options: [

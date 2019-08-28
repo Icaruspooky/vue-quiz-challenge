@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bulma": "^0.7.5",
+    "codenation-jest-score": "https://github.com/thecodenation/codenation-jest-score/tarball/master",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },

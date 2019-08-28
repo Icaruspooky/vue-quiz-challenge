@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" :data-resposta="correta">
       <div data-test="pergunta" class="title">{{ question }}</div>
       <ul>
         <li v-for="(option, index) in options" :key="index">
@@ -29,6 +29,7 @@ export default {
     question: String,
     options: Array,
     scored: Boolean,
+    correta: String,
     disabled: Boolean
   },
   data() {

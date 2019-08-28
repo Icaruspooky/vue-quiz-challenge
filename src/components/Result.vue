@@ -1,10 +1,12 @@
 <template>
   <div v-if="this.finished" class="container">
-    <div>
+    <div :data-resultado="score">
       <p>Você terminou! Seu score foi de: {{ score }} / {{ answered }}</p>
     </div>
     <div>
-      <button @click="reload()" class="button">Refazer</button>
+      <button @click="reload()" data-test="refazer" class="button">
+        Refazer
+      </button>
     </div>
   </div>
 </template>
