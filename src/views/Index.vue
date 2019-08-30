@@ -4,8 +4,8 @@
       <Question
         v-for="(question, index) in questions"
         :key="index"
-        @answerRight="answerRight(), (question.correta = 'correta')"
-        @answerWrong="answerWrong(), (question.correta = 'errada')"
+        @answer-right="answerRight(), (question.correta = 'correta')"
+        @answer-wrong="answerWrong(), (question.correta = 'errada')"
         @disable="question.disabled = true"
         :disabled="question.disabled"
         :question="question.question"
